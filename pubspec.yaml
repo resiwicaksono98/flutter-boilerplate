@@ -1,0 +1,62 @@
+name: flutter_boilerplate
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.10.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  
+  # State Management
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+  
+  # Networking
+  dio: ^5.4.3
+  
+  # Routing
+  go_router: ^14.2.0
+  
+  # Form & Validation
+  flutter_form_builder: ^10.2.0
+  
+  # Utils
+  flutter_dotenv: ^5.1.0
+  equatable: ^2.0.5
+  fpdart: ^1.1.0
+  logger: ^2.0.2+1
+  shared_preferences: ^2.2.2
+  intl: ^0.20.0
+  
+  # Code Generation Annotations
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  
+  # Localization
+  flutter_localizations:
+    sdk: flutter
+  
+  # Code Generation
+  build_runner: ^2.4.9
+  riverpod_generator: ^2.4.0
+  freezed: ^2.5.2
+  json_serializable: ^6.8.0
+  
+  # Testing
+  mocktail: ^1.0.3
+  integration_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - .env
