@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/app/router.dart';
 import 'package:flutter_boilerplate/app/theme.dart';
+import 'package:flutter_boilerplate/core/utils/snackbar_utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class App extends ConsumerWidget {
@@ -16,6 +17,7 @@ class App extends ConsumerWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
       routerConfig: router,
+      scaffoldMessengerKey: SnackbarUtils.messengerKey,
     );
   }
 }

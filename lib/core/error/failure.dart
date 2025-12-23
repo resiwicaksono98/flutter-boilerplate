@@ -1,22 +1,22 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-abstract class Failure extends Equatable {
-  final String message;
+part 'failure.freezed.dart';
 
-  const Failure(this.message);
+@freezed
+class Failure with _$Failure {
+  const Failure._(); // Added private constructor for custom methods
 
-  @override
-  List<Object?> get props => [message];
-}
+  const factory Failure.server(String? errorMsg) = _Server;
+  const factory Failure.network() = _Network;
+  const factory Failure.unauthorized() = _Unauthorized;
+  const factory Failure.unknown(Object? error) = _Unknown;
 
-class ServerFailure extends Failure {
-  const ServerFailure(super.message);
-}
-
-class ConnectionFailure extends Failure {
-  const ConnectionFailure(super.message);
-}
-
-class CacheFailure extends Failure {
-  const CacheFailure(super.message);
+  String get message {
+    return when(
+      server: (errorMsg) => errorMsg ?? 'Server Error',
+      network: () => 'No Internet Connection',
+      unauthorized: () => 'Unauthorized Access',
+      unknown: (err) => 'Unknown Error: $err',
+    );
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_boilerplate/core/error/failure.dart';
+import 'package:flutter_boilerplate/core/network/dio_exception_extension.dart';
 import 'package:flutter_boilerplate/features/product/data/datasources/product_remote_ds.dart';
 import 'package:flutter_boilerplate/features/product/data/models/product_model.dart';
 import 'package:flutter_boilerplate/features/product/domain/entities/product.dart';
@@ -26,9 +27,9 @@ class ProductRepositoryImpl implements ProductRepository {
       final products = productModels.map((e) => e.toEntity()).toList();
       return right(products);
     } on DioException catch (e) {
-      return left(ServerFailure(e.message ?? 'API Error'));
+      return left(e.toFailure());
     } catch (e) {
-      return left(const ServerFailure('Unknown Error'));
+      return left(Failure.unknown(e));
     }
   }
 
@@ -38,9 +39,9 @@ class ProductRepositoryImpl implements ProductRepository {
       final productModel = await _remoteDS.getProduct(id);
       return right(productModel.toEntity());
     } on DioException catch (e) {
-      return left(ServerFailure(e.message ?? 'API Error'));
+      return left(e.toFailure());
     } catch (e) {
-      return left(const ServerFailure('Unknown Error'));
+      return left(Failure.unknown(e));
     }
   }
 }
